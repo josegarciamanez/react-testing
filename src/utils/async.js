@@ -2,9 +2,32 @@ import { setTimeout } from 'timers';
 
 export const getDataCallback = (callback) => {
   // Solicitud http a un API
-  const name = 'Jose Garcia Mañez';
+  const name = 'Jose Garcia';
 
   setTimeout(() => {
     callback(name);
-  }, 2000);
+  }, 300);
+};
+
+export const getDataPromise = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Jose Garcia');
+    }, 300);
+  });
+};
+
+export const getDataPromiseError = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Error');
+    }, 300);
+  });
+};
+
+export const getUsers = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users/5');
+  const user = await res.json();
+
+  return user;
 };
